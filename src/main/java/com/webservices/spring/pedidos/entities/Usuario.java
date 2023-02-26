@@ -3,9 +3,15 @@ package com.webservices.spring.pedidos.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "tb_usuario")
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private String email;
