@@ -1,6 +1,8 @@
 package com.webservices.spring.pedidos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.*;
@@ -17,6 +19,8 @@ public class Usuario implements Serializable {
     private String email;
     private String telefone;
     private String senha;
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
 
     public Usuario(){
 
@@ -70,6 +74,10 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,6 +90,7 @@ public class Usuario implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 
 
 }
