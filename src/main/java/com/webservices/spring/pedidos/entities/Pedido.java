@@ -1,6 +1,7 @@
 package com.webservices.spring.pedidos.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.webservices.spring.pedidos.entities.enums.StatusPedido;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -19,6 +20,8 @@ public class Pedido implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant momentoPedido;
 
+    private StatusPedido statusPedido;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Usuario cliente;
@@ -26,10 +29,11 @@ public class Pedido implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(Long id, Instant momentoPedido, Usuario cliente) {
+    public Pedido(Long id, Instant momentoPedido, Usuario cliente, StatusPedido statusPedido) {
         this.id = id;
         this.momentoPedido = momentoPedido;
         this.cliente = cliente;
+        this.statusPedido = statusPedido;
     }
 
     public Long getId() {
@@ -54,6 +58,14 @@ public class Pedido implements Serializable {
 
     public void setCliente(Usuario cliente) {
         this.cliente = cliente;
+    }
+
+    public StatusPedido getStatusPedido() {
+        return statusPedido;
+    }
+
+    public void setStatusPedido(StatusPedido statusPedido) {
+        this.statusPedido = statusPedido;
     }
 
     @Override
